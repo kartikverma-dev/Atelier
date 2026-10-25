@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "quick",
+  "goal": {
+    "purpose": "Minimal architectural and documentary photography portfolio emphasizing natural light and print texture",
+    "audience": "Gallery curators, architectural publications, monograph publishers",
+    "feelingWords": ["Quiet", "Monolithic", "Atmospheric"]
+  },
+  "uiStyle": "minimal",
+  "color": {
+    "paletteId": "atelier-signature",
+    "primary": "#141312",
+    "secondary": "#5C564E",
+    "accent": "#C8A97E",
+    "background": "#FBF9F5",
+    "surface": "#FFFFFF",
+    "text": "#141312",
+    "mutedText": "#746E65",
+    "colorScheme": "light"
+  },
+  "typography": {
+    "pairingId": "cormorant-inter",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "Inter",
+    "monoFont": "JetBrains Mono",
+    "scale": "dramatic",
+    "headingWeight": "400",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "solid",
+    "details": "Warm alabaster gallery wall tone with zero border noise"
+  },
+  "imagery": {
+    "type": "hero-image",
+    "placement": ["hero", "cards", "sections"],
+    "size": "full-bleed",
+    "shape": "sharp"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "wide",
+    "gutter": "relaxed",
+    "spacingScale": "generous",
+    "sectionOrder": ["hero", "series-index", "exhibitions", "monographs", "contact"],
+    "navbarStyle": "floating",
+    "footerStyle": "minimal"
+  },
+  "components": {
+    "buttonShape": "sharp",
+    "buttonSize": "sm",
+    "buttonHover": "fill-expand",
+    "cardStyle": "border-only",
+    "formStyle": "minimal-underline",
+    "borderRadiusScale": "none",
+    "shadowStyle": "none",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "subtle",
+    "hoverIntensity": "subtle",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": false,
+    "darkModeToggle": false,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "Elias Thorne",
+    "tagline": "Architectural Photographer & Visual Archivist",
+    "sections": ["Selected Works", "Index 2018–2026", "Print Inquiries"],
+    "toneOfVoice": "Laconic, precise, contemplative silence",
+    "realCopy": "Architecture only exists in the presence of shadow. These plates examine concrete surfaces as they surrender to twilight.",
+    "unusualDetail": "Negative-space margins that mirror standard medium-format contact print aspect ratios"
+  },
+  "uniquenessBoost": true,
+  "seed": 10394
+}

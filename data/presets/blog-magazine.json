@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "quick",
+  "goal": {
+    "purpose": "Long-form culture, technology philosophy, and essay publication with immersive typography",
+    "audience": "Writers, researchers, technologists, independent thinkers",
+    "feelingWords": ["Literary", "Thoughtful", "Timeless"]
+  },
+  "uiStyle": "editorial",
+  "color": {
+    "paletteId": "analog-paperback",
+    "primary": "#1E1E1E",
+    "secondary": "#525252",
+    "accent": "#26547C",
+    "background": "#F4EFEA",
+    "surface": "#FCFAF7",
+    "text": "#1E1E1E",
+    "mutedText": "#6E6B66",
+    "colorScheme": "both"
+  },
+  "typography": {
+    "pairingId": "newsreader-outfit",
+    "headingFont": "Newsreader",
+    "bodyFont": "Outfit",
+    "monoFont": "JetBrains Mono",
+    "scale": "dramatic",
+    "headingWeight": "600",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "solid",
+    "details": "Warm book paper tone with generous 68ch column reading widths"
+  },
+  "imagery": {
+    "type": "hero-image",
+    "placement": ["hero", "cards"],
+    "size": "medium",
+    "shape": "sharp"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "default",
+    "gutter": "default",
+    "spacingScale": "generous",
+    "sectionOrder": ["lead-essay", "recent-dispatches", "the-archive", "author-index", "newsletter"],
+    "navbarStyle": "top",
+    "footerStyle": "editorial"
+  },
+  "components": {
+    "buttonShape": "sharp",
+    "buttonSize": "sm",
+    "buttonHover": "fill-expand",
+    "cardStyle": "border-only",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "none",
+    "shadowStyle": "none",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "css-only",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "none",
+    "hoverIntensity": "subtle",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": true,
+    "darkModeToggle": true,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "astro",
+    "styling": "tailwind",
+    "hosting": "cloudflare",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "The Marginalia Review",
+    "tagline": "Critical Essays on Technology, Solitude, and Civilization",
+    "sections": ["Issue 14", "Deep Dives", "The Library", "Correspondence"],
+    "toneOfVoice": "Scholarly yet accessible, rich with historical metaphor",
+    "realCopy": "We do not read merely to acquire data, but to discover which fragments of ourselves were previously unwritten.",
+    "unusualDetail": "Margin notes and annotations that expand in a desktop gutter beside key paragraphs"
+  },
+  "uniquenessBoost": true,
+  "seed": 62104
+}

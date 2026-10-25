@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "advanced",
+  "goal": {
+    "purpose": "Awwwards Site of the Day caliber digital monograph showcasing experimental spatial architecture and generative design",
+    "audience": "Creative technologists, international design jurors, high-end architecture clients",
+    "feelingWords": ["Immersive", "Avant-Garde", "Kinetic"]
+  },
+  "uiStyle": "dark-luxury",
+  "color": {
+    "paletteId": "midnight-executive",
+    "primary": "#F4F1EA",
+    "secondary": "#9C988F",
+    "accent": "#D4AF37",
+    "background": "#0B0B0F",
+    "surface": "#14141A",
+    "text": "#F4F1EA",
+    "mutedText": "#949087",
+    "colorScheme": "dark"
+  },
+  "typography": {
+    "pairingId": "cormorant-inter",
+    "headingFont": "Cormorant Garamond",
+    "bodyFont": "Inter",
+    "monoFont": "JetBrains Mono",
+    "scale": "dramatic",
+    "headingWeight": "600",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "animated-3d",
+    "details": "Subtle low-polygon wireframe mesh distorted by cursor movement with 3% grain"
+  },
+  "imagery": {
+    "type": "3d-objects",
+    "placement": ["hero", "sections"],
+    "size": "full-bleed",
+    "shape": "sharp"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "wide",
+    "gutter": "relaxed",
+    "spacingScale": "generous",
+    "sectionOrder": ["hero", "featured-works", "spatial-lab", "manifesto", "inquiries"],
+    "navbarStyle": "floating",
+    "footerStyle": "editorial"
+  },
+  "components": {
+    "buttonShape": "sharp",
+    "buttonSize": "md",
+    "buttonHover": "fill-expand",
+    "cardStyle": "border-only",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "none",
+    "shadowStyle": "none",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "gsap",
+    "pageLoadIntensity": "expressive",
+    "scrollIntensity": "expressive",
+    "hoverIntensity": "moderate",
+    "transitionIntensity": "expressive"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)", "1600px (Ultra-wide)"],
+    "pwa": false,
+    "darkModeToggle": false,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "STUDIO MONOLITH",
+    "tagline": "Experimental Architecture & Computational Form",
+    "sections": ["Opening Frame", "Monographs 01-08", "Material Experiments", "Colophon"],
+    "toneOfVoice": "Architectural, cryptic elegance, uncompromising vision",
+    "realCopy": "We construct digital monuments that explore the threshold between physical stone and algorithmic frequency.",
+    "unusualDetail": "Custom magnetic cursor that snaps to interactive project nodes with sound haptics"
+  },
+  "uniquenessBoost": true,
+  "seed": 91823
+}

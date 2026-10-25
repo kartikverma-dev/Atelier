@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "quick",
+  "goal": {
+    "purpose": "High-conversion enterprise SaaS landing page for an autonomous workflow engine",
+    "audience": "VP of Engineering, Operations Leads, Scale-up Founders",
+    "feelingWords": ["Engineered", "Reliable", "Velocity"]
+  },
+  "uiStyle": "corporate-clean",
+  "color": {
+    "paletteId": "saas-velocity",
+    "primary": "#0F172A",
+    "secondary": "#334155",
+    "accent": "#4F46E5",
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "text": "#0F172A",
+    "mutedText": "#64748B",
+    "colorScheme": "light"
+  },
+  "typography": {
+    "pairingId": "cabinet-satoshi",
+    "headingFont": "Montserrat",
+    "bodyFont": "DM Sans",
+    "monoFont": "JetBrains Mono",
+    "scale": "balanced",
+    "headingWeight": "700",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "gradient",
+    "details": "Subtle radiant indigo glow in hero with crisp micro-dot grid pattern"
+  },
+  "imagery": {
+    "type": "product-shots",
+    "placement": ["hero", "cards"],
+    "size": "medium",
+    "shape": "rounded"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "default",
+    "gutter": "default",
+    "spacingScale": "comfortable",
+    "sectionOrder": ["hero", "social-proof", "feature-bento", "metrics", "pricing", "faq", "footer"],
+    "navbarStyle": "top",
+    "footerStyle": "multi-column"
+  },
+  "components": {
+    "buttonShape": "subtle-round",
+    "buttonSize": "md",
+    "buttonHover": "subtle-lift",
+    "cardStyle": "subtle-elevated",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "medium",
+    "shadowStyle": "soft",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "subtle",
+    "hoverIntensity": "subtle",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": false,
+    "darkModeToggle": true,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "VectorFlow",
+    "tagline": "Automate resilient data pipelines in seconds, not sprints",
+    "sections": ["Hero", "Integrations", "Bento Grid", "ROI Calculator", "Enterprise Security", "CTA"],
+    "toneOfVoice": "Direct, confident, technical authority without buzzwords",
+    "realCopy": "Replace fragile custom scripts with verifiable, type-safe execution pipelines that survive edge outages.",
+    "unusualDetail": "Interactive live terminal widget in the hero that runs mock pipeline validations on keystrokes"
+  },
+  "uniquenessBoost": true,
+  "seed": 55410
+}

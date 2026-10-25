@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="128" fill="#141312"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#C8A97E" stroke-width="2" stroke-dasharray="4 8" opacity="0.4"/>
+  <!-- Central Atelier Serif Monogram 'A' -->
+  <path d="M256 120 L340 370 H295 L276 312 H236 L217 370 H172 Z M256 195 L244 274 H268 Z" fill="#FBF9F5"/>
+  <circle cx="256" cy="120" r="8" fill="#C8A97E"/>
+  <line x1="200" y1="340" x2="312" y2="340" stroke="#C8A97E" stroke-width="3" stroke-linecap="round"/>
+</svg>

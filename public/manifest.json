@@ -1,0 +1,17 @@
+{
+  "name": "Atelier — Design to AI Prompt Compiler",
+  "short_name": "Atelier",
+  "description": "Walk through every design decision for a website or app, preview live, and compile into a precise AI coding prompt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF9F5",
+  "theme_color": "#141312",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "target": "app",
+  "mode": "advanced",
+  "goal": {
+    "purpose": "Habit mastery and reflective journaling companion designed for focused daily ritual",
+    "audience": "Mindful professionals, creators, practitioners of deep work",
+    "feelingWords": ["Calm", "Intimate", "Essential"]
+  },
+  "uiStyle": "minimal",
+  "color": {
+    "paletteId": "atelier-signature",
+    "primary": "#141312",
+    "secondary": "#5C564E",
+    "accent": "#C8A97E",
+    "background": "#FBF9F5",
+    "surface": "#FFFFFF",
+    "text": "#141312",
+    "mutedText": "#746E65",
+    "colorScheme": "both"
+  },
+  "typography": {
+    "pairingId": "inter-inter",
+    "headingFont": "Inter",
+    "bodyFont": "Inter",
+    "monoFont": "JetBrains Mono",
+    "scale": "compact",
+    "headingWeight": "600",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "solid",
+    "details": "Warm paper white with subtle system native status bar integration"
+  },
+  "imagery": {
+    "type": "icons",
+    "placement": ["cards", "sections"],
+    "size": "compact",
+    "shape": "rounded"
+  },
+  "layout": {
+    "columns": 4,
+    "containerWidth": "narrow",
+    "gutter": "compact",
+    "spacingScale": "comfortable",
+    "sectionOrder": ["today-overview", "streak-heatmap", "active-rituals", "evening-reflection"],
+    "navbarStyle": "top",
+    "footerStyle": "minimal"
+  },
+  "components": {
+    "buttonShape": "pill",
+    "buttonSize": "md",
+    "buttonHover": "scale",
+    "cardStyle": "subtle-elevated",
+    "formStyle": "enclosed-pill",
+    "borderRadiusScale": "large",
+    "shadowStyle": "soft",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "subtle",
+    "hoverIntensity": "subtle",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Primary Phone Frame)", "430px (Pro Max)", "768px (iPad Mini)"],
+    "pwa": true,
+    "darkModeToggle": true,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "Kanso Daily",
+    "tagline": "A Quiet Space for Intentional Habits",
+    "sections": ["Today", "Rituals", "Progress Log", "Profile"],
+    "toneOfVoice": "Warm, encouraging, sparse, non-intrusive",
+    "realCopy": "Small, silent daily commitments compound into a lifetime of deliberate craftsmanship.",
+    "unusualDetail": "Haptic completion chime with gentle physics-based ripple when checking off daily rituals"
+  },
+  "uniquenessBoost": true,
+  "seed": 49012
+}

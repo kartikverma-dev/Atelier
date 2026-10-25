@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "quick",
+  "goal": {
+    "purpose": "Intimate reservation and tasting menu experience for a wood-fired hearth dining room",
+    "audience": "Gastronomes, neighborhood regulars, celebratory travelers",
+    "feelingWords": ["Sensory", "Artisanal", "Warm"]
+  },
+  "uiStyle": "editorial",
+  "color": {
+    "paletteId": "editorial-terracotta",
+    "primary": "#211612",
+    "secondary": "#6B554C",
+    "accent": "#C25E3E",
+    "background": "#FAF6F0",
+    "surface": "#FFFFFF",
+    "text": "#211612",
+    "mutedText": "#7E6A61",
+    "colorScheme": "light"
+  },
+  "typography": {
+    "pairingId": "fraunces-inter",
+    "headingFont": "Fraunces",
+    "bodyFont": "Inter",
+    "monoFont": "JetBrains Mono",
+    "scale": "dramatic",
+    "headingWeight": "700",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "noise",
+    "details": "Linen texture with subtle organic grain recalling handmade menu cardstock"
+  },
+  "imagery": {
+    "type": "product-shots",
+    "placement": ["hero", "sections"],
+    "size": "medium",
+    "shape": "rounded"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "default",
+    "gutter": "default",
+    "spacingScale": "generous",
+    "sectionOrder": ["hero", "philosophy", "seasonal-tasting", "cellar", "reservations", "private-dining"],
+    "navbarStyle": "top",
+    "footerStyle": "editorial"
+  },
+  "components": {
+    "buttonShape": "subtle-round",
+    "buttonSize": "md",
+    "buttonHover": "subtle-lift",
+    "cardStyle": "border-only",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "subtle",
+    "shadowStyle": "soft",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "subtle",
+    "hoverIntensity": "subtle",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": true,
+    "darkModeToggle": false,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "Maison Brûlée",
+    "tagline": "Open Flame Dining & Biodynamic Cellar",
+    "sections": ["The Hearth", "Autumn Carte", "Terroir", "Bookings"],
+    "toneOfVoice": "Warm, sensual, sensory, grounding",
+    "realCopy": "Wild fermentation, ancient grains, and ingredients harvested no further than eighty kilometers from our embers.",
+    "unusualDetail": "Daily handwritten tasting menu note signed by the kitchen with live table availability counter"
+  },
+  "uniquenessBoost": true,
+  "seed": 77120
+}

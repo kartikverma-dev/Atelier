@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "advanced",
+  "goal": {
+    "purpose": "High-impact design engineering studio portfolio winning venture and tech transformation accounts",
+    "audience": "Founders, CMOs, Product Leaders looking for world-class design systems",
+    "feelingWords": ["Sharp", "Provocative", "Precise"]
+  },
+  "uiStyle": "brutalist",
+  "color": {
+    "paletteId": "brutalist-mono",
+    "primary": "#000000",
+    "secondary": "#333333",
+    "accent": "#FF3B00",
+    "background": "#FFFFFF",
+    "surface": "#F4F4F4",
+    "text": "#000000",
+    "mutedText": "#666666",
+    "colorScheme": "light"
+  },
+  "typography": {
+    "pairingId": "syne-spacegrotesk",
+    "headingFont": "Syne",
+    "bodyFont": "Space Grotesk",
+    "monoFont": "Space Mono",
+    "scale": "dramatic",
+    "headingWeight": "800",
+    "bodyWeight": "500"
+  },
+  "background": {
+    "type": "pattern",
+    "details": "Technical hairline coordinate grid with exposed frame borders"
+  },
+  "imagery": {
+    "type": "hero-image",
+    "placement": ["hero", "cards"],
+    "size": "full-bleed",
+    "shape": "sharp"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "wide",
+    "gutter": "compact",
+    "spacingScale": "generous",
+    "sectionOrder": ["hero", "case-studies", "capabilities", "methodology", "contact-ticker"],
+    "navbarStyle": "top",
+    "footerStyle": "editorial"
+  },
+  "components": {
+    "buttonShape": "sharp",
+    "buttonSize": "lg",
+    "buttonHover": "invert",
+    "cardStyle": "border-only",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "none",
+    "shadowStyle": "none",
+    "iconStyle": "stroke-bold"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "expressive",
+    "scrollIntensity": "moderate",
+    "hoverIntensity": "moderate",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": false,
+    "darkModeToggle": false,
+    "languageSupport": "single"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "VOLT & VOID",
+    "tagline": "Design Engineering for the Next Decade of Software",
+    "sections": ["Selected Artifacts", "System Architecture", "Client Deployments", "Dispatch"],
+    "toneOfVoice": "Unapologetic, razor-sharp, technically brilliant",
+    "realCopy": "We build brands and user experiences that refuse to look like everything else on the Internet.",
+    "unusualDetail": "Continuous ticker tape footer showing real-time git commit SHA and London/Tokyo/SF time zones"
+  },
+  "uniquenessBoost": true,
+  "seed": 84711
+}

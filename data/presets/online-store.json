@@ -1,0 +1,89 @@
+{
+  "target": "website",
+  "mode": "advanced",
+  "goal": {
+    "purpose": "Direct-to-consumer luxury object and ceramic homeware e-commerce shop",
+    "audience": "Interior collectors, Scandinavian design enthusiasts, mindful homemakers",
+    "feelingWords": ["Tactile", "Serene", "Considered"]
+  },
+  "uiStyle": "minimal",
+  "color": {
+    "paletteId": "sage-botanical",
+    "primary": "#1B271F",
+    "secondary": "#47594C",
+    "accent": "#386641",
+    "background": "#F6F7F4",
+    "surface": "#FFFFFF",
+    "text": "#1B271F",
+    "mutedText": "#637367",
+    "colorScheme": "light"
+  },
+  "typography": {
+    "pairingId": "newsreader-outfit",
+    "headingFont": "Newsreader",
+    "bodyFont": "Outfit",
+    "monoFont": "JetBrains Mono",
+    "scale": "balanced",
+    "headingWeight": "600",
+    "bodyWeight": "400"
+  },
+  "background": {
+    "type": "solid",
+    "details": "Calm limestone wash with whisper-thin 1px dividers"
+  },
+  "imagery": {
+    "type": "product-shots",
+    "placement": ["hero", "cards", "sections"],
+    "size": "medium",
+    "shape": "sharp"
+  },
+  "layout": {
+    "columns": 12,
+    "containerWidth": "wide",
+    "gutter": "relaxed",
+    "spacingScale": "comfortable",
+    "sectionOrder": ["hero", "collection-grid", "craft-story", "materials", "cart-preview", "footer"],
+    "navbarStyle": "top",
+    "footerStyle": "multi-column"
+  },
+  "components": {
+    "buttonShape": "sharp",
+    "buttonSize": "md",
+    "buttonHover": "fill-expand",
+    "cardStyle": "border-only",
+    "formStyle": "crisp-bordered",
+    "borderRadiusScale": "none",
+    "shadowStyle": "none",
+    "iconStyle": "stroke-thin"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "pageLoadIntensity": "subtle",
+    "scrollIntensity": "subtle",
+    "hoverIntensity": "moderate",
+    "transitionIntensity": "subtle"
+  },
+  "behavior": {
+    "responsive": true,
+    "breakpoints": ["375px (Mobile)", "768px (Tablet)", "1280px (Desktop)"],
+    "pwa": true,
+    "darkModeToggle": false,
+    "languageSupport": "i18n-ready"
+  },
+  "tech": {
+    "framework": "nextjs",
+    "styling": "tailwind",
+    "hosting": "vercel",
+    "mobileEngine": "pwa"
+  },
+  "content": {
+    "brandName": "Koto Objects",
+    "tagline": "Handmade Stoneware & Enduring Domestic Vessels",
+    "sections": ["New Kiln Release", "The Ceramicists", "Provenance", "Shipping & Care"],
+    "toneOfVoice": "Quiet, grounded, respectful of materials and makers",
+    "realCopy": "Fired in small batches in Kyoto and Småland, each cup carries the distinct mineral footprint of river clay.",
+    "unusualDetail": "Slide-out fabric-feel drawer cart showing batch kiln number and maker initials for each item"
+  },
+  "uniquenessBoost": true,
+  "seed": 33902
+}
