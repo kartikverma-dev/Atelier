@@ -11,7 +11,7 @@ export function Footer() {
           {/* Column 1: Brand & Philosophy */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center">
-              <Logo variant="horizontal" tone="auto" height={24} />
+              <Logo variant="horizontal" tone="auto" height={32} />
             </div>
             <p className="text-atelier-muted max-w-md leading-relaxed text-xs">
               {BRAND.promise} A deterministic, pure TypeScript compiler transforming design choices into copy-ready prompts for Claude, Antigravity, Cursor, and ChatGPT.

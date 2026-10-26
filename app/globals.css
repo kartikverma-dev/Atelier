@@ -103,3 +103,15 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
   background-size: 8px 8px;
 }
+
+/* Logo presentation rules - protect hairline strokes */
+.logo,
+.logo img,
+.logo svg {
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  image-rendering: auto;
+  shape-rendering: geometricPrecision;
+}

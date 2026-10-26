@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Atelier"><title>Atelier</title><rect width="512" height="512" fill="#141312"/><g transform="translate(35.84 41.00) scale(0.86)">
+  <path d="M156.12 330 A119.37 119.37 0 0 1 355.88 330" fill="none" stroke="#C8A97E" stroke-width="18" stroke-linecap="butt"/>
+  <path d="M256 96 L116 424" fill="none" stroke="#FBF9F5" stroke-width="22" stroke-linecap="butt"/>
+  <path d="M256 96 L396 424" fill="none" stroke="#FBF9F5" stroke-width="22" stroke-linecap="butt"/>
+  <circle cx="256" cy="96" r="26" fill="#FBF9F5"/>
+</g></svg>

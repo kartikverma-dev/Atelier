@@ -51,8 +51,15 @@ export default function LandingPage() {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
           {/* Official Brand Logo */}
-          <div className="flex justify-center -mb-2">
-            <Logo variant="stacked" tone="auto" height={60} />
+          <div className="flex justify-center mb-1 sm:mb-2">
+            {/* Desktop / Tablet stacked logo (>= 640px) */}
+            <div className="hidden sm:block">
+              <Logo variant="stacked" tone="auto" width={220} />
+            </div>
+            {/* Mobile stacked logo (< 640px) */}
+            <div className="block sm:hidden">
+              <Logo variant="stacked" tone="auto" width={160} />
+            </div>
           </div>
 
           {/* Subtle Badge */}

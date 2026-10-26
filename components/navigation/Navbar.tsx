@@ -23,17 +23,21 @@ export function Navbar() {
             className="group flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-accent rounded-sm"
             aria-label={`${BRAND.name} Home`}
           >
-            {/* Horizontal logo on screens >= 480px */}
-            <div className="hidden min-[480px]:block">
-              <Logo variant="horizontal" tone="auto" height={28} />
+            {/* Desktop horizontal logo (>= 768px) */}
+            <div className="hidden md:block">
+              <Logo variant="horizontal" tone="auto" height={36} />
+            </div>
+            {/* Tablet/mobile horizontal logo (480px - 767px) */}
+            <div className="hidden min-[480px]:block md:hidden">
+              <Logo variant="horizontal" tone="auto" height={32} />
             </div>
             {/* Mark only on screens < 480px */}
             <div className="block min-[480px]:hidden">
-              <Logo variant="mark" tone="auto" height={28} />
+              <Logo variant="mark" tone="auto" height={32} />
             </div>
           </Link>
 
-          <span className="hidden md:inline-block text-xs uppercase tracking-widest text-atelier-muted/70 font-mono pl-2 border-l border-atelier-border">
+          <span className="hidden md:inline-block text-xs uppercase tracking-widest text-atelier-muted/70 font-mono pl-3 border-l border-atelier-border">
             v{BRAND.version}
           </span>
         </div>

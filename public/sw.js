@@ -1,14 +1,33 @@
-// Atelier Service Worker - Offline Cache v2.0
-const CACHE_NAME = "atelier-offline-v2";
+// Atelier Service Worker - Offline Cache v3.0
+const CACHE_NAME = "atelier-offline-v3";
 const STATIC_ASSETS = [
   "/",
   "/manifest.json",
   "/favicon.ico",
   "/brand/svg/favicon.svg",
+  "/brand/svg/atelier-app-icon.svg",
   "/brand/png/app-icon-192.png",
   "/brand/png/app-icon-512.png",
   "/brand/png/app-icon-maskable-512.png",
   "/brand/png/apple-touch-icon.png",
+  "/brand/svg/atelier-logo-horizontal-light.svg",
+  "/brand/svg/atelier-logo-horizontal-dark.svg",
+  "/brand/svg/atelier-logo-horizontal-light-sturdy.svg",
+  "/brand/svg/atelier-logo-horizontal-dark-sturdy.svg",
+  "/brand/svg/atelier-logo-horizontal-mono-black-sturdy.svg",
+  "/brand/svg/atelier-logo-horizontal-mono-white-sturdy.svg",
+  "/brand/svg/atelier-logo-stacked-light.svg",
+  "/brand/svg/atelier-logo-stacked-dark.svg",
+  "/brand/svg/atelier-logo-stacked-light-sturdy.svg",
+  "/brand/svg/atelier-logo-stacked-dark-sturdy.svg",
+  "/brand/svg/atelier-logo-stacked-mono-black-sturdy.svg",
+  "/brand/svg/atelier-logo-stacked-mono-white-sturdy.svg",
+  "/brand/svg/atelier-mark-light.svg",
+  "/brand/svg/atelier-mark-dark.svg",
+  "/brand/svg/atelier-mark-light-sturdy.svg",
+  "/brand/svg/atelier-mark-dark-sturdy.svg",
+  "/brand/svg/atelier-mark-mono-black-sturdy.svg",
+  "/brand/svg/atelier-mark-mono-white-sturdy.svg",
 ];
 
 self.addEventListener("install", (event) => {
