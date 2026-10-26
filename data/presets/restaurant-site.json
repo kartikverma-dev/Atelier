@@ -27,6 +27,23 @@
     "headingWeight": "700",
     "bodyWeight": "400"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": false,
+    "logoType": "badge",
+    "letteringStyle": "high-contrast-serif",
+    "letterCase": "uppercase",
+    "tracking": "wide",
+    "symbolIdea": "An artisanal olive branch hearth seal",
+    "symbolStyle": "hand-drawn",
+    "colorUse": "single-color",
+    "placement": ["navbar-center", "footer", "hero"],
+    "navbarHeight": 32,
+    "iconsEnabled": true,
+    "iconShape": "circle",
+    "iconSource": "symbol"
+  },
   "background": {
     "type": "noise",
     "details": "Linen texture with subtle organic grain recalling handmade menu cardstock"

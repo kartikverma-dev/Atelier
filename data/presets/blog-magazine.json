@@ -27,6 +27,23 @@
     "headingWeight": "600",
     "bodyWeight": "400"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": false,
+    "logoType": "wordmark",
+    "letteringStyle": "high-contrast-serif",
+    "letterCase": "small-caps",
+    "tracking": "normal",
+    "symbolIdea": "",
+    "symbolStyle": "line",
+    "colorUse": "single-color",
+    "placement": ["navbar-center", "footer"],
+    "navbarHeight": 28,
+    "iconsEnabled": true,
+    "iconShape": "square",
+    "iconSource": "monogram"
+  },
   "background": {
     "type": "solid",
     "details": "Warm book paper tone with generous 68ch column reading widths"

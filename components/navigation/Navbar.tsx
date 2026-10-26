@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BRAND } from "@/config/brand";
+import { Logo } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useWizardStore } from "@/store/wizard";
 import { Sparkles, Layers, ShieldCheck, History, Image as ImageIcon } from "lucide-react";
@@ -17,13 +18,19 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand Logo & Tagline */}
         <div className="flex items-center gap-3">
-          <Link href="/" className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-accent rounded-sm">
-            <span className="w-8 h-8 rounded bg-atelier-text text-atelier-bg flex items-center justify-center font-serif text-lg font-bold group-hover:scale-105 transition-transform duration-200">
-              A
-            </span>
-            <span className="font-serif text-xl tracking-tight font-medium text-atelier-text">
-              {BRAND.name}
-            </span>
+          <Link
+            href="/"
+            className="group flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-atelier-accent rounded-sm"
+            aria-label={`${BRAND.name} Home`}
+          >
+            {/* Horizontal logo on screens >= 480px */}
+            <div className="hidden min-[480px]:block">
+              <Logo variant="horizontal" tone="auto" height={28} />
+            </div>
+            {/* Mark only on screens < 480px */}
+            <div className="block min-[480px]:hidden">
+              <Logo variant="mark" tone="auto" height={28} />
+            </div>
           </Link>
 
           <span className="hidden md:inline-block text-xs uppercase tracking-widest text-atelier-muted/70 font-mono pl-2 border-l border-atelier-border">

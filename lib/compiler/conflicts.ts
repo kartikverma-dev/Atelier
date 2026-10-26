@@ -1,5 +1,5 @@
 import { Choices } from "@/lib/share/schema";
-import { getLuminance, compileColorTokens } from "./mappings/color";
+import { getLuminance, compileColorTokens, getContrastRatio } from "./mappings/color";
 
 export interface DesignConflict {
   id: string;
@@ -174,6 +174,91 @@ export function detectConflicts(choices: Choices): DesignConflict[] {
       suggestion: `Set column count to 4 columns to match standard iOS and Android layout guidelines.`,
       stepSlug: "layout",
     });
+  }
+
+  // 9. Logo Color Contrast Below 3:1 Against Navigation Bar
+  if (choices.logo) {
+    const navbarBg = choices.color.surface;
+    const logoFg =
+      choices.logo.colorUse === "two-color" ? choices.color.accent : choices.color.text;
+    const logoContrast = getContrastRatio(logoFg, navbarBg);
+    if (logoContrast < 3.0) {
+      conflicts.push({
+        id: "logo-contrast-below-3-to-1",
+        severity: "warning",
+        title: "Logo Color Contrast Below 3:1 Against Navigation Bar",
+        description: `The chosen logo foreground color (${logoFg}) only provides a ${logoContrast}:1 contrast ratio against the navigation bar surface (${navbarBg}). Brand marks must achieve at least 3:1 contrast for visual clarity and accessibility.`,
+        suggestion: `Adjust your primary text or accent color token, or adjust the surface background token to ensure at least 3:1 contrast.`,
+        stepSlug: "logo",
+      });
+    }
+
+    // 10. Monogram Selected but Brand Name Missing or Too Short
+    if (
+      choices.logo.source === "design-new" &&
+      choices.logo.logoType === "monogram" &&
+      (!choices.content.brandName || choices.content.brandName.trim().length <= 1)
+    ) {
+      conflicts.push({
+        id: "logo-monogram-brand-name-too-short",
+        severity: "warning",
+        title: "Monogram Selected but Brand Name is Too Short",
+        description: `You selected a monogram logo badge, but your brand name ("${choices.content.brandName}") is missing or only one character. Monograms require at least two characters to extract legible initials (e.g., 'MA' for 'Maison Aurelia').`,
+        suggestion: `Provide a full brand name with at least two characters in the Content step, or choose 'Wordmark' instead.`,
+        stepSlug: "logo",
+      });
+    }
+
+    // 11. "Already have a logo" Selected but No File Path Given
+    if (
+      choices.logo.source === "already-have" &&
+      (!choices.logo.existingFile || choices.logo.existingFile.trim() === "")
+    ) {
+      conflicts.push({
+        id: "logo-missing-existing-file-path",
+        severity: "warning",
+        title: "Missing Existing Logo File Path",
+        description: `You indicated that you already have an existing logo file, but the file path input is empty.`,
+        suggestion: `Enter the relative or public file path (e.g. "/public/brand/logo.svg") where the AI can locate your logo file.`,
+        stepSlug: "logo",
+      });
+    }
+
+    // 12. Very Ornate Symbol Idea Combined with 24px Navbar Height
+    const ornateRegex =
+      /\b(ornate|detailed|intricate|complex|baroque|filigree|crest|detailed engraving|realistic|heraldic|elaborate)\b/i;
+    if (
+      choices.logo.navbarHeight === 24 &&
+      choices.logo.source === "design-new" &&
+      (choices.logo.logoType === "symbol-wordmark" || choices.logo.logoType === "badge") &&
+      ornateRegex.test(choices.logo.symbolIdea)
+    ) {
+      conflicts.push({
+        id: "logo-ornate-symbol-at-small-height",
+        severity: "warning",
+        title: "Ornate Symbol Concept at 24px Navbar Height",
+        description: `Your symbol idea describes an ornate/intricate design ("${choices.logo.symbolIdea}"), but the navigation bar logo height is set to 24px. Intricate details will blur and become illegible at small rasterized sizes.`,
+        suggestion: `Increase the navbar logo height to 32px or 40px, or simplify the symbol idea to a bold, monoline geometric concept.`,
+        stepSlug: "logo",
+      });
+    }
+
+    // 13. Placement Includes Loading Screen but PWA/Motion Settings are Off
+    if (
+      choices.logo.placement &&
+      choices.logo.placement.includes("loading-screen") &&
+      !choices.behavior.pwa &&
+      (choices.motion.library === "none" || choices.motion.pageLoadIntensity === "none")
+    ) {
+      conflicts.push({
+        id: "logo-loading-screen-without-pwa-or-motion",
+        severity: "warning",
+        title: "Loading Screen Logo Selected Without Motion or PWA",
+        description: `You selected the logo to appear on a loading screen, but PWA is disabled and motion is turned off/none, so the application will render immediately without a loading transition.`,
+        suggestion: `Enable PWA in the Behavior step, enable page load motion in the Motion step, or remove 'loading screen' from logo placements.`,
+        stepSlug: "logo",
+      });
+    }
   }
 
   return conflicts;

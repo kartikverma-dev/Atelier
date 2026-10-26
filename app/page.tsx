@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
 import { BRAND } from "@/config/brand";
+import { Logo } from "@/components/brand/Logo";
 import { PRESETS, PresetMeta } from "@/data/presets";
 import { useWizardStore } from "@/store/wizard";
 import {
@@ -49,6 +50,11 @@ export default function LandingPage() {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-atelier-accent/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+          {/* Official Brand Logo */}
+          <div className="flex justify-center -mb-2">
+            <Logo variant="stacked" tone="auto" height={60} />
+          </div>
+
           {/* Subtle Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-atelier-border bg-atelier-surface text-xs font-mono text-atelier-muted shadow-xs">
             <span className="w-2 h-2 rounded-full bg-atelier-accent" />

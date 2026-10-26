@@ -63,6 +63,16 @@ export const STEPS: StepDefinition[] = [
   },
   {
     id: 5,
+    slug: "logo",
+    title: "Brand Mark, Logo & Icon Set",
+    shortTitle: "Logo",
+    category: "Aesthetics",
+    helpText: "Define whether to craft an inline SVG wordmark, monogram badge, or specify existing logo files, favicons, and app icons.",
+    compilerSection: "Brand Mark, Logo and Icons",
+    quickMode: true,
+  },
+  {
+    id: 6,
     slug: "background",
     title: "Atmospheric Canvas & Background Treatment",
     shortTitle: "Background",
@@ -73,7 +83,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Auto-calibrated based on selected aesthetic direction",
   },
   {
-    id: 6,
+    id: 7,
     slug: "imagery",
     title: "Foreground Imagery & Visual Assets",
     shortTitle: "Imagery",
@@ -84,7 +94,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Auto-set to hero & showcase assets matching target",
   },
   {
-    id: 7,
+    id: 8,
     slug: "layout",
     title: "Grid Architecture, Layout & Navigation",
     shortTitle: "Layout",
@@ -95,7 +105,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Balanced 12-column grid with floating navigation",
   },
   {
-    id: 8,
+    id: 9,
     slug: "components",
     title: "Component DNA: Buttons, Cards & Controls",
     shortTitle: "Components",
@@ -106,7 +116,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Calibrated to your UI style automatically",
   },
   {
-    id: 9,
+    id: 10,
     slug: "motion",
     title: "Motion Choreography & Easing Physics",
     shortTitle: "Motion",
@@ -116,7 +126,7 @@ export const STEPS: StepDefinition[] = [
     quickMode: true,
   },
   {
-    id: 10,
+    id: 11,
     slug: "behavior",
     title: "Platform Behavior, Offline & Responsiveness",
     shortTitle: "Behavior",
@@ -126,7 +136,7 @@ export const STEPS: StepDefinition[] = [
     quickMode: true,
   },
   {
-    id: 11,
+    id: 12,
     slug: "tech",
     title: "Technology Stack & Code Architecture",
     shortTitle: "Tech Stack",
@@ -137,7 +147,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Standardized on Next.js + Tailwind + Vercel",
   },
   {
-    id: 12,
+    id: 13,
     slug: "content",
     title: "Real Content, Brand Copy & Unique Touches",
     shortTitle: "Content",
@@ -148,7 +158,7 @@ export const STEPS: StepDefinition[] = [
     quickModeNote: "Sensible architectural copy preloaded",
   },
   {
-    id: 13,
+    id: 14,
     slug: "review",
     title: "Compiled AI Prompt Review & Export",
     shortTitle: "Review",

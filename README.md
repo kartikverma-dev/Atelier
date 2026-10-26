@@ -60,9 +60,10 @@ Atelier is a free, transparent web app that walks non-experts and designers thro
   ├── compiler.test.ts  # Determinism, checklist, do-nots, presets, clashes
   └── share.test.ts     # Share URL roundtripping, prefix handling, error tolerance
 /public
+  ├── brand/            # Official Atelier logo & icon asset kit (SVG, PNG)
+  ├── favicon.ico       # Web favicon
   ├── manifest.json     # PWA manifest
-  ├── sw.js             # Service Worker offline caching
-  └── icon.svg          # Atelier luxury monogram icon
+  └── sw.js             # Service Worker offline caching
 ```
 
 ---

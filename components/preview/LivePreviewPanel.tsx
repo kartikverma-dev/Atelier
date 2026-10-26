@@ -25,6 +25,176 @@ import {
   Wifi,
 } from "lucide-react";
 import { TYPE_SCALES } from "@/data/fonts";
+import { Choices } from "@/lib/share/schema";
+import { getBrandInitials } from "@/lib/compiler/mappings/logo";
+
+function renderPreviewLogo(choices: Choices) {
+  const { logo, color, typography, content } = choices;
+  const brandName = content.brandName || "Atelier Studio";
+  const initials = getBrandInitials(brandName);
+
+  if (logo?.source === "already-have") {
+    return (
+      <div
+        className="px-2.5 py-1 rounded border border-dashed flex items-center gap-1.5 text-[11px] font-mono select-none"
+        style={{
+          borderColor: `${color.mutedText}40`,
+          backgroundColor: `${color.surface}`,
+          color: color.mutedText,
+          height: `${logo.navbarHeight || 28}px`,
+        }}
+      >
+        <span className="w-2 h-2 rounded-full bg-atelier-accent" />
+        <span>Your logo</span>
+      </div>
+    );
+  }
+
+  let resolvedFont = typography.headingFont;
+  if (logo?.letteringStyle === "high-contrast-serif") resolvedFont = "Playfair Display, serif";
+  else if (logo?.letteringStyle === "geometric-sans") resolvedFont = "Space Grotesk, sans-serif";
+  else if (logo?.letteringStyle === "humanist-sans") resolvedFont = "Plus Jakarta Sans, sans-serif";
+  else if (logo?.letteringStyle === "monospace") resolvedFont = "JetBrains Mono, monospace";
+  else if (logo?.letteringStyle && logo?.letteringStyle !== "heading-font") resolvedFont = logo.letteringStyle;
+
+  const textTransform =
+    logo?.letterCase === "uppercase"
+      ? ("uppercase" as const)
+      : logo?.letterCase === "small-caps"
+      ? ("lowercase" as const)
+      : ("none" as const);
+  const fontVariant = logo?.letterCase === "small-caps" ? "small-caps" : "normal";
+
+  const letterSpacing =
+    logo?.tracking === "tight"
+      ? "-0.02em"
+      : logo?.tracking === "wide"
+      ? "0.22em"
+      : "0.04em";
+
+  const height = logo?.navbarHeight || 28;
+  const logoColor = logo?.colorUse === "two-color" ? color.accent : color.text;
+
+  if (logo?.source === "wordmark-only" || logo?.logoType === "wordmark") {
+    return (
+      <div className="flex items-center" style={{ height }}>
+        <span
+          className="font-bold text-xs tracking-tight select-none"
+          style={{
+            fontFamily: resolvedFont,
+            color: color.text,
+            textTransform,
+            fontVariant,
+            letterSpacing,
+            fontSize: height <= 24 ? "12px" : height <= 28 ? "14px" : "16px",
+          }}
+        >
+          {brandName}
+        </span>
+      </div>
+    );
+  }
+
+  if (logo?.logoType === "monogram") {
+    return (
+      <div className="flex items-center gap-2" style={{ height }}>
+        <div
+          className="flex items-center justify-center font-bold shadow-xs select-none"
+          style={{
+            width: height,
+            height: height,
+            backgroundColor: color.surface,
+            border: `1px solid ${logoColor}40`,
+            color: logoColor,
+            fontFamily: resolvedFont,
+            fontSize: height <= 24 ? "10px" : height <= 28 ? "12px" : "14px",
+            borderRadius: "6px",
+          }}
+        >
+          {initials}
+        </div>
+        <span
+          className="font-bold text-xs select-none"
+          style={{
+            fontFamily: resolvedFont,
+            color: color.text,
+            textTransform,
+            fontVariant,
+            letterSpacing,
+            fontSize: height <= 24 ? "12px" : height <= 28 ? "13px" : "15px",
+          }}
+        >
+          {brandName}
+        </span>
+      </div>
+    );
+  }
+
+  if (logo?.logoType === "badge") {
+    return (
+      <div className="flex items-center gap-2" style={{ height }}>
+        <div
+          className="rounded-full flex items-center justify-center font-bold shadow-xs select-none"
+          style={{
+            width: height,
+            height: height,
+            backgroundColor: color.surface,
+            border: `1.5px solid ${color.accent}`,
+            color: color.accent,
+            fontFamily: resolvedFont,
+            fontSize: height <= 24 ? "10px" : "12px",
+          }}
+        >
+          {initials}
+        </div>
+        <span
+          className="font-bold text-xs select-none"
+          style={{
+            fontFamily: resolvedFont,
+            color: color.text,
+            textTransform,
+            fontVariant,
+            letterSpacing,
+            fontSize: height <= 24 ? "12px" : height <= 28 ? "14px" : "16px",
+          }}
+        >
+          {brandName}
+        </span>
+      </div>
+    );
+  }
+
+  // Symbol + wordmark
+  return (
+    <div className="flex items-center gap-2" style={{ height }}>
+      <div
+        className="rounded flex items-center justify-center select-none"
+        style={{
+          width: height,
+          height: height,
+          backgroundColor: `${color.accent}20`,
+          border: `1px solid ${color.accent}50`,
+          color: color.accent,
+        }}
+      >
+        <Sparkles className="w-3.5 h-3.5" />
+      </div>
+      <span
+        className="font-bold text-xs select-none"
+        style={{
+          fontFamily: resolvedFont,
+          color: color.text,
+          textTransform,
+          fontVariant,
+          letterSpacing,
+          fontSize: height <= 24 ? "12px" : height <= 28 ? "14px" : "16px",
+        }}
+      >
+        {brandName}
+      </span>
+    </div>
+  );
+}
 
 export function LivePreviewPanel() {
   const { choices, deviceMode, setDeviceMode } = useWizardStore();
@@ -117,7 +287,94 @@ export function LivePreviewPanel() {
       </div>
 
       {/* Viewport Frame Container */}
-      <div className="flex-1 overflow-y-auto p-3 sm:p-6 flex items-start justify-center bg-atelier-subtle/30">
+      {/* Viewport Frame Container */}
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col items-center justify-start bg-atelier-subtle/30 gap-4">
+        {/* Favicon & Browser Tab Mockup */}
+        <div className="w-full max-w-xl bg-atelier-surface/90 border border-atelier-border rounded-lg p-2.5 flex flex-wrap items-center justify-between gap-3 shadow-xs">
+          {/* Simulated Browser Tab */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-t-md bg-atelier-card border border-b-0 border-atelier-border max-w-[260px] text-xs font-mono">
+            {/* 16px Favicon */}
+            <div
+              className={`w-4 h-4 flex items-center justify-center text-[9px] font-bold shrink-0 select-none ${
+                choices.logo?.iconShape === "circle"
+                  ? "rounded-full"
+                  : choices.logo?.iconShape === "square"
+                  ? "rounded-none"
+                  : "rounded-[3px]"
+              }`}
+              style={{
+                backgroundColor: choices.color.surface,
+                color: choices.logo?.colorUse === "two-color" ? choices.color.accent : choices.color.text,
+                border: `1px solid ${choices.color.accent}60`,
+              }}
+            >
+              {choices.logo?.iconSource === "symbol" ? (
+                <Sparkles className="w-2.5 h-2.5" />
+              ) : (
+                getBrandInitials(choices.content.brandName).charAt(0)
+              )}
+            </div>
+            <span className="truncate text-atelier-text text-[11px]">
+              {choices.content.brandName || "Atelier"}
+            </span>
+            <span className="text-atelier-muted/60 text-[10px] ml-auto">✕</span>
+          </div>
+
+          {/* Favicon Size Inspector */}
+          <div className="flex items-center gap-3 text-xs font-mono text-atelier-muted">
+            <span className="text-[10px] uppercase tracking-wider text-atelier-muted/70">Favicon Mockup:</span>
+            {/* 16px icon */}
+            <div className="flex items-center gap-1">
+              <div
+                className={`w-4 h-4 flex items-center justify-center text-[9px] font-bold ${
+                  choices.logo?.iconShape === "circle"
+                    ? "rounded-full"
+                    : choices.logo?.iconShape === "square"
+                    ? "rounded-none"
+                    : "rounded-[3px]"
+                }`}
+                style={{
+                  backgroundColor: choices.color.surface,
+                  color: choices.logo?.colorUse === "two-color" ? choices.color.accent : choices.color.text,
+                  border: `1px solid ${choices.color.accent}60`,
+                }}
+              >
+                {choices.logo?.iconSource === "symbol" ? (
+                  <Sparkles className="w-2.5 h-2.5" />
+                ) : (
+                  getBrandInitials(choices.content.brandName).charAt(0)
+                )}
+              </div>
+              <span className="text-[10px]">16px</span>
+            </div>
+
+            {/* 32px icon */}
+            <div className="flex items-center gap-1.5">
+              <div
+                className={`w-8 h-8 flex items-center justify-center text-xs font-bold ${
+                  choices.logo?.iconShape === "circle"
+                    ? "rounded-full"
+                    : choices.logo?.iconShape === "square"
+                    ? "rounded-none"
+                    : "rounded-[6px]"
+                }`}
+                style={{
+                  backgroundColor: choices.color.surface,
+                  color: choices.logo?.colorUse === "two-color" ? choices.color.accent : choices.color.text,
+                  border: `1px solid ${choices.color.accent}60`,
+                }}
+              >
+                {choices.logo?.iconSource === "symbol" ? (
+                  <Sparkles className="w-4 h-4" />
+                ) : (
+                  getBrandInitials(choices.content.brandName)
+                )}
+              </div>
+              <span className="text-[10px]">32px</span>
+            </div>
+          </div>
+        </div>
+
         <div
           className={`w-full ${containerWidthStyle} transition-all duration-300 ease-out shadow-float overflow-hidden flex flex-col`}
           style={{
@@ -153,12 +410,9 @@ export function LivePreviewPanel() {
               <div>
                 <div className="flex items-center justify-between pb-4">
                   <div>
-                    <span
-                      className="text-[11px] uppercase tracking-wider font-mono block opacity-70"
-                      style={{ color: color.mutedText }}
-                    >
-                      {choices.content.brandName || "Atelier App"}
-                    </span>
+                    <div className="mb-1.5">
+                      {renderPreviewLogo(choices)}
+                    </div>
                     <h2
                       className="text-lg font-bold tracking-tight"
                       style={{
@@ -363,25 +617,8 @@ export function LivePreviewPanel() {
                   borderRadius: layout.navbarStyle === "floating" ? "9999px" : "0px",
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-5 h-5 rounded flex items-center justify-center font-bold text-[11px]"
-                    style={{
-                      backgroundColor: color.text,
-                      color: color.background,
-                    }}
-                  >
-                    {choices.content.brandName.charAt(0) || "A"}
-                  </div>
-                  <span
-                    className="font-bold text-xs tracking-tight"
-                    style={{
-                      fontFamily: typography.headingFont,
-                      color: color.text,
-                    }}
-                  >
-                    {choices.content.brandName || "Atelier Studio"}
-                  </span>
+                <div className="flex items-center">
+                  {renderPreviewLogo(choices)}
                 </div>
 
                 <div

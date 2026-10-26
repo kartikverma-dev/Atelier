@@ -27,6 +27,23 @@
     "headingWeight": "600",
     "bodyWeight": "400"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": true,
+    "logoType": "monogram",
+    "letteringStyle": "heading-font",
+    "letterCase": "uppercase",
+    "tracking": "normal",
+    "symbolIdea": "An interlocking geometric monogram tile",
+    "symbolStyle": "geometric",
+    "colorUse": "two-color",
+    "placement": ["navbar-left", "hero"],
+    "navbarHeight": 32,
+    "iconsEnabled": true,
+    "iconShape": "rounded-square",
+    "iconSource": "monogram"
+  },
   "background": {
     "type": "solid",
     "details": "Warm paper white with subtle system native status bar integration"

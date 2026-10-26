@@ -27,6 +27,23 @@
     "headingWeight": "400",
     "bodyWeight": "400"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": false,
+    "logoType": "wordmark",
+    "letteringStyle": "heading-font",
+    "letterCase": "uppercase",
+    "tracking": "wide",
+    "symbolIdea": "",
+    "symbolStyle": "line",
+    "colorUse": "single-color",
+    "placement": ["navbar-left", "footer"],
+    "navbarHeight": 28,
+    "iconsEnabled": true,
+    "iconShape": "square",
+    "iconSource": "monogram"
+  },
   "background": {
     "type": "solid",
     "details": "Warm alabaster gallery wall tone with zero border noise"

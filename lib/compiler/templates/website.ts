@@ -2,6 +2,7 @@ import { Choices } from "@/lib/share/schema";
 import { compileStyleTokens } from "../mappings/style";
 import { compileColorTokens } from "../mappings/color";
 import { compileTypographyTokens } from "../mappings/typography";
+import { compileLogoTokens } from "../mappings/logo";
 import { compileBackgroundTokens } from "../mappings/background";
 import { compileImageryTokens } from "../mappings/imagery";
 import { compileLayoutTokens } from "../mappings/layout";
@@ -38,6 +39,13 @@ export function compileWebsitePrompt(
   );
   const colorData = compileColorTokens(choices.color);
   const typeData = compileTypographyTokens(choices.typography);
+  const logoData = compileLogoTokens(
+    choices.logo,
+    choices.content.brandName,
+    choices.color,
+    choices.typography,
+    choices.behavior.pwa
+  );
   const bgData = compileBackgroundTokens(
     choices.background,
     choices.color.background,
@@ -91,44 +99,50 @@ Elevation & Layering Rules:
 - Spacing Philosophy: ${style.spacingPhilosophy}`,
     },
     {
+      id: "brand-logo",
+      title: "3. Brand Mark, Logo & Icon Set",
+      why: "A logo and icon set is the most recognizable part of a site. Exact sizes, colors and files stop the AI from inventing a generic mark.",
+      body: `${logoData}`,
+    },
+    {
       id: "layout-grid",
-      title: "3. Layout & Grid Architecture",
+      title: "4. Layout & Grid Architecture",
       why: "Prevents awkward layouts, unbalanced containers, and poorly aligned elements across screen sizes.",
       body: `${layoutData}`,
     },
     {
       id: "imagery",
-      title: "4. Imagery & Visual Assets",
+      title: "5. Imagery & Visual Assets",
       why: "Defines concrete rules for aspect ratios, masks, and loading attributes so visuals reinforce rather than compromise the design.",
       body: `${imgData}`,
     },
     {
       id: "components",
-      title: "5. Component Specifications & Micro-Interactions",
+      title: "6. Component Specifications & Micro-Interactions",
       why: "Ensures buttons, cards, forms, and icons feel tactile, cohesive, and follow unified hover and active states.",
       body: `${componentData}`,
     },
     {
       id: "motion",
-      title: "6. Motion Choreography & Transitions",
+      title: "7. Motion Choreography & Transitions",
       why: "Guarantees smooth, tasteful animations with exact easing curves while enforcing reduced-motion accessibility.",
       body: `${motionData}`,
     },
     {
       id: "responsive-pwa",
-      title: "7. Responsive Behavior & Platform Support",
+      title: "8. Responsive Behavior & Platform Support",
       why: "Enforces proper mobile touch targets, viewport scaling, dark mode mechanics, and offline capabilities.",
       body: `${behaviorData}`,
     },
     {
       id: "tech-stack",
-      title: "8. Tech Stack & File Architecture",
+      title: "9. Tech Stack & File Architecture",
       why: "Prevents the AI from inventing unnecessary libraries, using deprecated patterns, or creating chaotic file structures.",
       body: `${techData}`,
     },
     {
       id: "content",
-      title: "9. Content, Copy & Tone of Voice",
+      title: "10. Content, Copy & Tone of Voice",
       why: "Eliminates placeholder lorem ipsum and infuses authentic copy aligned with the brand's tone of voice.",
       body: `Brand Name: ${choices.content.brandName}
 Tagline: ${choices.content.tagline}
@@ -142,7 +156,7 @@ ${canonicalSections.map((sec, idx) => `${idx + 1}. [${sec}]`).join("\n")}`,
     },
     {
       id: "quality-checklist",
-      title: "10. Verification Checklist",
+      title: "11. Verification Checklist",
       why: "A required verification pass the AI must execute before considering the code complete.",
       body: `Before delivering your code, you MUST verify each of the following criteria:
 [ ] 1. Responsive verification: Test layout at 375px (mobile), 768px (tablet), and 1280px (desktop). Zero horizontal scroll.
@@ -151,11 +165,13 @@ ${canonicalSections.map((sec, idx) => `${idx + 1}. [${sec}]`).join("\n")}`,
 [ ] 4. Reduced-motion compliance: Every animation must collapse gracefully under @media (prefers-reduced-motion: reduce).
 [ ] 5. Performance / CLS: Every image element must define explicit width and height attributes to prevent layout shift.
 [ ] 6. Zero console errors or unhandled warnings in developer tools.
-[ ] 7. Lighthouse target scores: 95+ on Performance, Accessibility, Best Practices, and SEO.`,
+[ ] 7. Lighthouse target scores: 95+ on Performance, Accessibility, Best Practices, and SEO.
+[ ] 8. Logo contrast verification: Verify logo mark and lettering achieve at least 3:1 contrast against the navbar background in both light and dark themes.
+[ ] 9. Logo rendering & CLS: Ensure SVG logo is crisp at 1x and 2x viewports, favicon is legible at 16px and 32px, and navbar logo does not shift layout on load.`,
     },
     {
       id: "do-nots",
-      title: "11. Explicit Prohibitions (Do-Nots)",
+      title: "12. Explicit Prohibitions (Do-Nots)",
       why: "Hard constraints that prevent common AI failure modes (lorem ipsum, default styles, bloated packages).",
       body: `DO NOT violate any of the following constraints under any circumstance:
 - DO NOT use lorem ipsum, Latin text, or "Lorem ipsum dolor sit amet" under any circumstance. Use contextually relevant, realistic content.

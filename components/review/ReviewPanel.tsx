@@ -81,6 +81,8 @@ export function ReviewPanel() {
   const sectionStepMap: Record<string, string> = {
     overview: "goal",
     "design-system": "ui-style",
+    "brand-logo": "logo",
+    logo: "logo",
     "layout-grid": "layout",
     imagery: "imagery",
     components: "components",

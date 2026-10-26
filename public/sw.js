@@ -1,9 +1,14 @@
-// Atelier Service Worker - Offline Cache v1.0
-const CACHE_NAME = "atelier-offline-v1";
+// Atelier Service Worker - Offline Cache v2.0
+const CACHE_NAME = "atelier-offline-v2";
 const STATIC_ASSETS = [
   "/",
   "/manifest.json",
-  "/icon.svg",
+  "/favicon.ico",
+  "/brand/svg/favicon.svg",
+  "/brand/png/app-icon-192.png",
+  "/brand/png/app-icon-512.png",
+  "/brand/png/app-icon-maskable-512.png",
+  "/brand/png/apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (event) => {

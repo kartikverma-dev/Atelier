@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BRAND } from "@/config/brand";
+import { Logo } from "@/components/brand/Logo";
 import { Shield, Sparkles, Code2, Heart } from "lucide-react";
 
 export function Footer() {
@@ -9,13 +10,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Column 1: Brand & Philosophy */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded bg-atelier-text text-atelier-bg flex items-center justify-center font-serif text-xs font-bold">
-                A
-              </span>
-              <span className="font-serif text-base font-semibold text-atelier-text tracking-tight">
-                {BRAND.name}
-              </span>
+            <div className="flex items-center">
+              <Logo variant="horizontal" tone="auto" height={24} />
             </div>
             <p className="text-atelier-muted max-w-md leading-relaxed text-xs">
               {BRAND.promise} A deterministic, pure TypeScript compiler transforming design choices into copy-ready prompts for Claude, Antigravity, Cursor, and ChatGPT.

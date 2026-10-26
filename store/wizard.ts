@@ -146,6 +146,13 @@ export const useWizardStore = create<WizardStore>()(
           let motionLibrary: "none" | "css-only" | "framer-motion" | "gsap" | "lenis" | "threejs" = "framer-motion";
           let bgType: "solid" | "gradient" | "noise" | "image" | "video" | "animated-3d" | "pattern" = "noise";
 
+          let logoType: "wordmark" | "monogram" | "symbol-wordmark" | "badge" = "symbol-wordmark";
+          let letteringStyle = "heading-font";
+          let letterCase: "normal" | "uppercase" | "small-caps" = "uppercase";
+          let tracking: "tight" | "normal" | "wide" = "wide";
+          let colorUse: "single-color" | "two-color" | "auto-palette" = "two-color";
+          let navbarHeight: 24 | 28 | 32 | 40 = 28;
+
           switch (style) {
             case "dark-luxury":
               paletteId = "midnight-executive";
@@ -156,6 +163,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "subtle";
               motionLibrary = "framer-motion";
               bgType = "noise";
+              logoType = "symbol-wordmark";
+              letteringStyle = "heading-font";
+              letterCase = "uppercase";
+              tracking = "wide";
+              colorUse = "two-color";
+              navbarHeight = 28;
               break;
             case "minimal":
               paletteId = "atelier-signature";
@@ -166,6 +179,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "none";
               motionLibrary = "css-only";
               bgType = "solid";
+              logoType = "wordmark";
+              letteringStyle = "heading-font";
+              letterCase = "uppercase";
+              tracking = "wide";
+              colorUse = "single-color";
+              navbarHeight = 24;
               break;
             case "editorial":
               paletteId = "editorial-terracotta";
@@ -176,6 +195,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "subtle";
               motionLibrary = "framer-motion";
               bgType = "noise";
+              logoType = "wordmark";
+              letteringStyle = "high-contrast-serif";
+              letterCase = "uppercase";
+              tracking = "wide";
+              colorUse = "single-color";
+              navbarHeight = 28;
               break;
             case "brutalist":
               paletteId = "brutalist-mono";
@@ -186,6 +211,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "none";
               motionLibrary = "css-only";
               bgType = "pattern";
+              logoType = "monogram";
+              letteringStyle = "monospace";
+              letterCase = "uppercase";
+              tracking = "tight";
+              colorUse = "single-color";
+              navbarHeight = 32;
               break;
             case "glassmorphism":
               paletteId = "frosted-glass-aurora";
@@ -196,6 +227,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "large";
               motionLibrary = "framer-motion";
               bgType = "gradient";
+              logoType = "symbol-wordmark";
+              letteringStyle = "heading-font";
+              letterCase = "uppercase";
+              tracking = "wide";
+              colorUse = "two-color";
+              navbarHeight = 28;
               break;
             case "corporate-clean":
               paletteId = "saas-velocity";
@@ -206,6 +243,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "medium";
               motionLibrary = "framer-motion";
               bgType = "gradient";
+              logoType = "symbol-wordmark";
+              letteringStyle = "geometric-sans";
+              letterCase = "normal";
+              tracking = "normal";
+              colorUse = "auto-palette";
+              navbarHeight = 28;
               break;
             case "playful":
               paletteId = "solar-citrus";
@@ -216,6 +259,12 @@ export const useWizardStore = create<WizardStore>()(
               borderRadiusScale = "full";
               motionLibrary = "framer-motion";
               bgType = "gradient";
+              logoType = "badge";
+              letteringStyle = "humanist-sans";
+              letterCase = "normal";
+              tracking = "normal";
+              colorUse = "two-color";
+              navbarHeight = 32;
               break;
             default:
               break;
@@ -246,6 +295,15 @@ export const useWizardStore = create<WizardStore>()(
                 headingFont: chosenFont.headingFont,
                 bodyFont: chosenFont.bodyFont,
                 monoFont: chosenFont.monoFont,
+              },
+              logo: {
+                ...state.choices.logo,
+                logoType,
+                letteringStyle,
+                letterCase,
+                tracking,
+                colorUse,
+                navbarHeight,
               },
               background: {
                 ...state.choices.background,

@@ -47,6 +47,33 @@ export const TypographySchema = z.object({
   bodyWeight: z.string().default("400"),
 });
 
+export const LogoSourceEnum = z.enum(["already-have", "design-new", "wordmark-only"]);
+export type LogoSource = z.infer<typeof LogoSourceEnum>;
+
+export const LogoTypeEnum = z.enum(["wordmark", "monogram", "symbol-wordmark", "badge"]);
+export type LogoType = z.infer<typeof LogoTypeEnum>;
+
+export const LogoSchema = z.object({
+  source: LogoSourceEnum.default("design-new"),
+  existingFile: z.string().default("/public/brand/logo.svg"),
+  hasDarkVersion: z.boolean().default(true),
+  logoType: LogoTypeEnum.default("symbol-wordmark"),
+  letteringStyle: z.string().default("heading-font"),
+  letterCase: z.enum(["normal", "uppercase", "small-caps"]).default("uppercase"),
+  tracking: z.enum(["tight", "normal", "wide"]).default("wide"),
+  symbolIdea: z.string().default("A minimalist geometric compass arch"),
+  symbolStyle: z.enum(["line", "solid", "geometric", "hand-drawn", "abstract"]).default("line"),
+  colorUse: z.enum(["single-color", "two-color", "auto-palette"]).default("two-color"),
+  placement: z
+    .array(z.enum(["navbar-left", "navbar-center", "footer", "hero", "loading-screen"]))
+    .default(["navbar-left", "footer"]),
+  navbarHeight: z.union([z.literal(24), z.literal(28), z.literal(32), z.literal(40)]).default(28),
+  iconsEnabled: z.boolean().default(true),
+  iconShape: z.enum(["square", "rounded-square", "circle"]).default("rounded-square"),
+  iconSource: z.enum(["monogram", "symbol"]).default("monogram"),
+});
+export type LogoChoices = z.infer<typeof LogoSchema>;
+
 export const BackgroundSchema = z.object({
   type: z.enum(["solid", "gradient", "noise", "image", "video", "animated-3d", "pattern"]).default("noise"),
   details: z.string().default("Deep matte charcoal with fine 4% monochromatic grain overlay"),
@@ -113,6 +140,7 @@ export const ContentSchema = z.object({
 });
 
 export const ChoicesSchema = z.object({
+  schemaVersion: z.number().default(2),
   target: TargetEnum.default("website"),
   mode: WizardModeEnum.default("quick"),
   goal: GoalSchema.default({
@@ -140,6 +168,23 @@ export const ChoicesSchema = z.object({
     scale: "dramatic",
     headingWeight: "600",
     bodyWeight: "400",
+  }),
+  logo: LogoSchema.default({
+    source: "design-new",
+    existingFile: "/public/brand/logo.svg",
+    hasDarkVersion: true,
+    logoType: "symbol-wordmark",
+    letteringStyle: "heading-font",
+    letterCase: "uppercase",
+    tracking: "wide",
+    symbolIdea: "A minimalist geometric compass arch",
+    symbolStyle: "line",
+    colorUse: "two-color",
+    placement: ["navbar-left", "footer"],
+    navbarHeight: 28,
+    iconsEnabled: true,
+    iconShape: "rounded-square",
+    iconSource: "monogram",
   }),
   background: BackgroundSchema.default({
     type: "noise",

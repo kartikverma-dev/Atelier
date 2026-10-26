@@ -27,6 +27,23 @@
     "headingWeight": "600",
     "bodyWeight": "400"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": true,
+    "logoType": "symbol-wordmark",
+    "letteringStyle": "heading-font",
+    "letterCase": "uppercase",
+    "tracking": "wide",
+    "symbolIdea": "A kinetic geometric drafting arch",
+    "symbolStyle": "line",
+    "colorUse": "two-color",
+    "placement": ["navbar-left", "footer", "hero"],
+    "navbarHeight": 28,
+    "iconsEnabled": true,
+    "iconShape": "rounded-square",
+    "iconSource": "symbol"
+  },
   "background": {
     "type": "animated-3d",
     "details": "Subtle low-polygon wireframe mesh distorted by cursor movement with 3% grain"

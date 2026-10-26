@@ -2,6 +2,7 @@ import { Choices } from "@/lib/share/schema";
 import { compileStyleTokens } from "../mappings/style";
 import { compileColorTokens } from "../mappings/color";
 import { compileTypographyTokens } from "../mappings/typography";
+import { compileLogoTokens } from "../mappings/logo";
 import { compileComponentTokens } from "../mappings/components";
 import { compileMotionTokens } from "../mappings/motion";
 import { compileBehaviorTokens } from "../mappings/behavior";
@@ -25,6 +26,13 @@ export function compileAppPrompt(
   );
   const colorData = compileColorTokens(choices.color);
   const typeData = compileTypographyTokens(choices.typography);
+  const logoData = compileLogoTokens(
+    choices.logo,
+    choices.content.brandName,
+    choices.color,
+    choices.typography,
+    choices.behavior.pwa
+  );
   const componentData = compileComponentTokens(choices.components, choices.color.accent);
   const motionData = compileMotionTokens(choices.motion);
   const behaviorData = compileBehaviorTokens(choices.behavior);
@@ -103,8 +111,14 @@ Component & Control Specifications:
 ${componentData}`,
     },
     {
+      id: "brand-logo",
+      title: "7. Brand Mark, Logo & Icon Set",
+      why: "A logo and icon set is the most recognizable part of a site. Exact sizes, colors and files stop the AI from inventing a generic mark.",
+      body: `${logoData}`,
+    },
+    {
       id: "platform-behavior",
-      title: "7. Platform & Offline Behavior",
+      title: "8. Platform & Offline Behavior",
       why: "Addresses native device features: safe areas, haptics, status bar, and service worker caching.",
       body: `Platform & Device Handling:
 ${techData}
@@ -114,7 +128,7 @@ ${behaviorData}`,
     },
     {
       id: "auth",
-      title: "8. Authentication & Security (If Required)",
+      title: "9. Authentication & Security (If Required)",
       why: "Specifies secure token storage and polite guest-mode exploration.",
       body: `Authentication Guidelines:
 - Support frictionless guest mode allowing users to explore value before demanding account creation.
@@ -122,7 +136,7 @@ ${behaviorData}`,
     },
     {
       id: "quality-checklist",
-      title: "9. Mobile Verification Checklist",
+      title: "10. Mobile Verification Checklist",
       why: "Guarantees proper mobile QA before code delivery.",
       body: `Verify before finalizing the application code:
 [ ] 1. Safe area compliance: UI elements never clip behind device notch, camera pill, or bottom home bar.
@@ -130,11 +144,13 @@ ${behaviorData}`,
 [ ] 3. Smooth scrolling: 60fps fluid list scrolling with virtualized lists for collections over 20 items.
 [ ] 4. Dark mode compliance: Proper contrast in both light and dark appearances.
 [ ] 5. Offline resilience: Core views display cached data without blank screens when disconnected.
-[ ] 6. Zero memory leaks during screen push/pop transitions.`,
+[ ] 6. Zero memory leaks during screen push/pop transitions.
+[ ] 7. Logo contrast verification: Verify logo mark meets at least 3:1 contrast against navigation header/surfaces in light and dark modes.
+[ ] 8. Icon assets verification: Ensure app icon is provided at 192x192, 512x512, and maskable 512x512 formats with core glyph in safe zone.`,
     },
     {
       id: "do-nots",
-      title: "10. Explicit Mobile Prohibitions (Do-Nots)",
+      title: "11. Explicit Mobile Prohibitions (Do-Nots)",
       why: "Eliminates anti-patterns common in AI-generated mobile applications.",
       body: `Mobile Prohibitions:
 - DO NOT render web-style desktop scrollbars in mobile views.

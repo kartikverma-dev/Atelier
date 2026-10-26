@@ -27,6 +27,23 @@
     "headingWeight": "800",
     "bodyWeight": "500"
   },
+  "logo": {
+    "source": "design-new",
+    "existingFile": "/public/brand/logo.svg",
+    "hasDarkVersion": true,
+    "logoType": "monogram",
+    "letteringStyle": "monospace",
+    "letterCase": "uppercase",
+    "tracking": "tight",
+    "symbolIdea": "A stark architectural brutalist square glyph",
+    "symbolStyle": "solid",
+    "colorUse": "two-color",
+    "placement": ["navbar-left", "footer"],
+    "navbarHeight": 32,
+    "iconsEnabled": true,
+    "iconShape": "square",
+    "iconSource": "monogram"
+  },
   "background": {
     "type": "pattern",
     "details": "Technical hairline coordinate grid with exposed frame borders"

@@ -7,8 +7,31 @@ export const metadata: Metadata = {
   description: BRAND.description,
   manifest: "/manifest.json",
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: [
+      { url: "/brand/svg/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/brand/png/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.description,
+    images: [
+      {
+        url: "/brand/png/og-image-1200x630.png",
+        width: 1200,
+        height: 630,
+        alt: `${BRAND.name} Preview`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.description,
+    images: ["/brand/png/og-image-1200x630.png"],
   },
   authors: [{ name: BRAND.author }],
   keywords: [

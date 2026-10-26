@@ -515,7 +515,550 @@ export function StepRenderer({ step }: { step: StepDefinition }) {
     );
   }
 
-  // Step 5: Background
+  // Step 5: Logo & Brand Mark
+  if (step.slug === "logo") {
+    const logo = choices.logo || {
+      source: "design-new",
+      existingFile: "/public/brand/logo.svg",
+      hasDarkVersion: true,
+      logoType: "symbol-wordmark",
+      letteringStyle: "heading-font",
+      letterCase: "uppercase",
+      tracking: "wide",
+      symbolIdea: "A minimalist geometric compass arch",
+      symbolStyle: "line",
+      colorUse: "two-color",
+      placement: ["navbar-left", "footer"],
+      navbarHeight: 28,
+      iconsEnabled: true,
+      iconShape: "rounded-square",
+      iconSource: "monogram",
+    };
+
+    const togglePlacement = (val: "navbar-left" | "navbar-center" | "footer" | "hero" | "loading-screen") => {
+      const current = logo.placement || [];
+      if (current.includes(val)) {
+        if (current.length > 1) {
+          updateNestedChoice("logo", { placement: current.filter((p) => p !== val) });
+        }
+      } else {
+        updateNestedChoice("logo", { placement: [...current, val] });
+      }
+    };
+
+    return (
+      <div className="space-y-8">
+        {/* 1. Logo Source */}
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+            Logo Source & Strategy
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              {
+                id: "design-new",
+                label: "Design One For Me",
+                desc: "The AI designs an inline SVG mark, monogram, or badge following exact design tokens.",
+              },
+              {
+                id: "wordmark-only",
+                label: "Text Wordmark Only",
+                desc: "Typeset pure brand text with editorial letter-spacing and outlined paths.",
+              },
+              {
+                id: "already-have",
+                label: "I Already Have a Logo",
+                desc: "Instruct the AI to use your existing SVG files on disk without modifying artwork.",
+              },
+            ].map((src) => (
+              <button
+                key={src.id}
+                type="button"
+                onClick={() => updateNestedChoice("logo", { source: src.id as any })}
+                className={`p-4 rounded-md border text-left flex flex-col justify-between transition-all ${
+                  logo.source === src.id
+                    ? "border-atelier-text bg-atelier-card ring-1 ring-atelier-text shadow-xs"
+                    : "border-atelier-border bg-atelier-surface hover:border-atelier-muted"
+                }`}
+              >
+                <div>
+                  <span className="font-semibold text-xs block text-atelier-text mb-1">
+                    {src.label}
+                  </span>
+                  <p className="text-[11px] text-atelier-muted leading-relaxed">
+                    {src.desc}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 2. Existing File Settings (when source is already-have) */}
+        {logo.source === "already-have" && (
+          <div className="p-4 rounded-lg border border-atelier-border bg-atelier-surface space-y-4">
+            <div>
+              <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-1.5">
+                Existing Logo File Path (Relative to Project Root)
+              </label>
+              <input
+                type="text"
+                value={logo.existingFile}
+                onChange={(e) => updateNestedChoice("logo", { existingFile: e.target.value })}
+                placeholder="/public/brand/logo.svg"
+                className="w-full px-3 py-2 rounded border border-atelier-border bg-atelier-card text-xs font-mono text-atelier-text focus:outline-none focus:ring-1 focus:ring-atelier-accent"
+              />
+              <span className="text-[11px] text-atelier-muted mt-1 block">
+                The AI will be strictly instructed to use this file directly without restyling or redrawing.
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 pt-1">
+              <input
+                type="checkbox"
+                id="hasDarkVersion"
+                checked={logo.hasDarkVersion}
+                onChange={(e) => updateNestedChoice("logo", { hasDarkVersion: e.target.checked })}
+                className="w-4 h-4 rounded border-atelier-border text-atelier-accent focus:ring-atelier-accent"
+              />
+              <label htmlFor="hasDarkVersion" className="text-xs text-atelier-text select-none cursor-pointer">
+                A dark-background variant exists (e.g. at{" "}
+                <code className="font-mono text-atelier-accent">
+                  {logo.existingFile ? logo.existingFile.replace(/\.svg$/, "-dark.svg") : "/public/brand/logo-dark.svg"}
+                </code>
+                )
+              </label>
+            </div>
+          </div>
+        )}
+
+        {/* 3. Logo Type (when source is design-new) */}
+        {logo.source === "design-new" && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+                Logo Composition & Archetype
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                {[
+                  {
+                    id: "symbol-wordmark",
+                    label: "Symbol + Wordmark",
+                    desc: "Distinct vector mark paired with typographic name",
+                  },
+                  {
+                    id: "wordmark",
+                    label: "Pure Wordmark",
+                    desc: "Art-directed brand typography with no icon",
+                  },
+                  {
+                    id: "monogram",
+                    label: "Monogram Badge",
+                    desc: "Initials framed inside a geometric container",
+                  },
+                  {
+                    id: "badge",
+                    label: "Emblem / Insignia",
+                    desc: "Architectural stamp or seal enclosing mark & text",
+                  },
+                ].map((lt) => (
+                  <button
+                    key={lt.id}
+                    type="button"
+                    onClick={() => updateNestedChoice("logo", { logoType: lt.id as any })}
+                    className={`p-3 rounded-md border text-left transition-all ${
+                      logo.logoType === lt.id
+                        ? "border-atelier-text bg-atelier-card ring-1 ring-atelier-text"
+                        : "border-atelier-border bg-atelier-surface hover:border-atelier-muted"
+                    }`}
+                  >
+                    <span className="font-semibold text-xs block text-atelier-text mb-1">
+                      {lt.label}
+                    </span>
+                    <p className="text-[10px] text-atelier-muted line-clamp-2">
+                      {lt.desc}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Symbol Concept and Style (when symbol or badge) */}
+            {(logo.logoType === "symbol-wordmark" || logo.logoType === "badge") && (
+              <div className="p-4 rounded-lg border border-atelier-border bg-atelier-surface space-y-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-1.5">
+                    Symbol Concept (One Short Prompt Line)
+                  </label>
+                  <input
+                    type="text"
+                    value={logo.symbolIdea}
+                    onChange={(e) => updateNestedChoice("logo", { symbolIdea: e.target.value })}
+                    placeholder="e.g. A minimalist geometric compass arch"
+                    className="w-full px-3 py-2 rounded border border-atelier-border bg-atelier-card text-xs text-atelier-text focus:outline-none focus:ring-1 focus:ring-atelier-accent"
+                  />
+                  <span className="text-[11px] text-atelier-muted mt-1 block">
+                    Describe the core glyph metaphor in 3–8 words.
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+                    Symbol Vector Style
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {[
+                      { id: "line", label: "Monoline" },
+                      { id: "solid", label: "Solid" },
+                      { id: "geometric", label: "Geometric" },
+                      { id: "hand-drawn", label: "Hand-Drawn" },
+                      { id: "abstract", label: "Abstract" },
+                    ].map((st) => (
+                      <button
+                        key={st.id}
+                        type="button"
+                        onClick={() => updateNestedChoice("logo", { symbolStyle: st.id as any })}
+                        className={`py-2 px-3 rounded border text-center text-xs font-medium uppercase font-mono transition-all ${
+                          logo.symbolStyle === st.id
+                            ? "border-atelier-text bg-atelier-card text-atelier-text font-bold"
+                            : "border-atelier-border bg-atelier-surface text-atelier-muted hover:text-atelier-text"
+                        }`}
+                      >
+                        {st.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 4. Lettering Style & Font Selection */}
+        {logo.source !== "already-have" && (
+          <div>
+            <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+              Lettering Style & Typography Discipline
+            </label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {[
+                {
+                  id: "heading-font",
+                  label: "Chosen Heading Font",
+                  desc: `Inherit "${choices.typography.headingFont}"`,
+                },
+                {
+                  id: "high-contrast-serif",
+                  label: "High-Contrast Serif",
+                  desc: "Italiana / Playfair luxury display",
+                },
+                {
+                  id: "geometric-sans",
+                  label: "Geometric Sans",
+                  desc: "Space Grotesk / Futura architecture",
+                },
+                {
+                  id: "humanist-sans",
+                  label: "Humanist Sans",
+                  desc: "Plus Jakarta / Frutiger warmth",
+                },
+                {
+                  id: "monospace",
+                  label: "Technical Monospace",
+                  desc: "JetBrains / Space Mono engineering",
+                },
+                {
+                  id: "custom",
+                  label: "Custom Font Name",
+                  desc: "Specify exact font family",
+                },
+              ].map((styleOpt) => (
+                <button
+                  key={styleOpt.id}
+                  type="button"
+                  onClick={() => updateNestedChoice("logo", { letteringStyle: styleOpt.id })}
+                  className={`p-3 rounded-md border text-left transition-all ${
+                    logo.letteringStyle === styleOpt.id
+                      ? "border-atelier-text bg-atelier-card ring-1 ring-atelier-text"
+                      : "border-atelier-border bg-atelier-surface hover:border-atelier-muted"
+                  }`}
+                >
+                  <span className="font-semibold text-xs block text-atelier-text mb-0.5">
+                    {styleOpt.label}
+                  </span>
+                  <span className="text-[10px] text-atelier-muted">
+                    {styleOpt.desc}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {logo.letteringStyle === "custom" && (
+              <div className="mt-3">
+                <input
+                  type="text"
+                  placeholder="Enter custom font family name..."
+                  className="w-full px-3 py-2 rounded border border-atelier-border bg-atelier-card text-xs text-atelier-text focus:outline-none focus:ring-1 focus:ring-atelier-accent"
+                  onChange={(e) => updateNestedChoice("logo", { letteringStyle: e.target.value })}
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* 5. Case and Letter-Spacing (Tracking) */}
+        {logo.source !== "already-have" && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+                Capitalization & Case
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: "normal", label: "Normal" },
+                  { id: "uppercase", label: "ALL CAPS" },
+                  { id: "small-caps", label: "Small Caps" },
+                ].map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => updateNestedChoice("logo", { letterCase: c.id as any })}
+                    className={`py-2 px-2 rounded border text-center text-xs font-mono transition-all ${
+                      logo.letterCase === c.id
+                        ? "border-atelier-text bg-atelier-card text-atelier-text font-bold"
+                        : "border-atelier-border bg-atelier-surface text-atelier-muted hover:text-atelier-text"
+                    }`}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+                Letter-Spacing (Tracking)
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: "tight", label: "Tight (-0.02em)" },
+                  { id: "normal", label: "Normal (0.04em)" },
+                  { id: "wide", label: "Wide (0.24em)" },
+                ].map((tr) => (
+                  <button
+                    key={tr.id}
+                    type="button"
+                    onClick={() => updateNestedChoice("logo", { tracking: tr.id as any })}
+                    className={`py-2 px-2 rounded border text-center text-xs font-mono transition-all ${
+                      logo.tracking === tr.id
+                        ? "border-atelier-text bg-atelier-card text-atelier-text font-bold"
+                        : "border-atelier-border bg-atelier-surface text-atelier-muted hover:text-atelier-text"
+                    }`}
+                  >
+                    {tr.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 6. Color Use */}
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+            Logo Color Treatment
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            {[
+              {
+                id: "two-color",
+                label: "Two-Color (Text + Accent)",
+                desc: "Lettering in primary text token, symbol highlighted with accent.",
+              },
+              {
+                id: "single-color",
+                label: "Single-Color (Monochrome)",
+                desc: "Uniform fill using the primary text token (fill: currentColor).",
+              },
+              {
+                id: "auto-palette",
+                label: "Follows Palette Automatically",
+                desc: "Adapts dynamic tints across light and dark surface transitions.",
+              },
+            ].map((col) => (
+              <button
+                key={col.id}
+                type="button"
+                onClick={() => updateNestedChoice("logo", { colorUse: col.id as any })}
+                className={`p-3 rounded-md border text-left transition-all ${
+                  logo.colorUse === col.id
+                    ? "border-atelier-text bg-atelier-card ring-1 ring-atelier-text shadow-xs"
+                    : "border-atelier-border bg-atelier-surface hover:border-atelier-muted"
+                }`}
+              >
+                <span className="font-semibold text-xs block text-atelier-text mb-1">
+                  {col.label}
+                </span>
+                <p className="text-[11px] text-atelier-muted leading-relaxed">
+                  {col.desc}
+                </p>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 7. Placement Landmarks */}
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+            Target Placements (Multi-Select)
+          </label>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+            {[
+              { id: "navbar-left", label: "Navbar Left" },
+              { id: "navbar-center", label: "Navbar Center" },
+              { id: "footer", label: "Footer / Colophon" },
+              { id: "hero", label: "Hero Landmark" },
+              { id: "loading-screen", label: "Loading Screen" },
+            ].map((place) => {
+              const isSelected = (logo.placement || []).includes(place.id as any);
+              return (
+                <button
+                  key={place.id}
+                  type="button"
+                  onClick={() => togglePlacement(place.id as any)}
+                  className={`p-2.5 rounded border text-center text-xs font-mono transition-all flex items-center justify-center gap-1.5 ${
+                    isSelected
+                      ? "border-atelier-text bg-atelier-card text-atelier-text font-bold ring-1 ring-atelier-text"
+                      : "border-atelier-border bg-atelier-surface text-atelier-muted hover:text-atelier-text"
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${isSelected ? "bg-atelier-accent" : "bg-atelier-border"}`} />
+                  <span>{place.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 8. Navbar Logo Height */}
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-atelier-muted mb-2">
+            Navbar Logo Render Height
+          </label>
+          <div className="grid grid-cols-4 gap-2.5">
+            {[24, 28, 32, 40].map((h) => (
+              <button
+                key={h}
+                type="button"
+                onClick={() => updateNestedChoice("logo", { navbarHeight: h as any })}
+                className={`py-3 px-3 rounded-md border text-center font-mono transition-all ${
+                  logo.navbarHeight === h
+                    ? "border-atelier-text bg-atelier-card text-atelier-text font-bold ring-1 ring-atelier-text"
+                    : "border-atelier-border bg-atelier-surface text-atelier-muted hover:text-atelier-text"
+                }`}
+              >
+                <span className="block text-sm font-semibold">{h}px</span>
+                <span className="text-[10px] text-atelier-muted">
+                  {h === 24 ? "Discreet" : h === 28 ? "Standard" : h === 32 ? "Prominent" : "Monumental"}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 9. Favicon and App Icons */}
+        <div className="p-4 rounded-lg border border-atelier-border bg-atelier-surface space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="font-semibold text-xs block text-atelier-text">
+                Generate Favicon, Touch & PWA Icon Suite
+              </span>
+              <span className="text-[11px] text-atelier-muted">
+                Compiles specs for favicon.svg, favicon.ico (16/32/48px), Apple Touch (180px), and Open Graph (1200x630).
+              </span>
+            </div>
+            <div className="flex items-center bg-atelier-card border border-atelier-border rounded p-0.5">
+              <button
+                type="button"
+                onClick={() => updateNestedChoice("logo", { iconsEnabled: true })}
+                className={`px-3 py-1 rounded text-xs font-mono font-medium ${
+                  logo.iconsEnabled ? "bg-atelier-text text-atelier-bg" : "text-atelier-muted"
+                }`}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={() => updateNestedChoice("logo", { iconsEnabled: false })}
+                className={`px-3 py-1 rounded text-xs font-mono font-medium ${
+                  !logo.iconsEnabled ? "bg-atelier-text text-atelier-bg" : "text-atelier-muted"
+                }`}
+              >
+                No
+              </button>
+            </div>
+          </div>
+
+          {logo.iconsEnabled && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-atelier-border/50">
+              <div>
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-atelier-muted mb-1.5">
+                  App Icon Geometry Shape
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { id: "rounded-square", label: "Squircle" },
+                    { id: "square", label: "Sharp Square" },
+                    { id: "circle", label: "Circle" },
+                  ].map((sh) => (
+                    <button
+                      key={sh.id}
+                      type="button"
+                      onClick={() => updateNestedChoice("logo", { iconShape: sh.id as any })}
+                      className={`py-1.5 px-2 rounded border text-center text-xs font-mono transition-all ${
+                        logo.iconShape === sh.id
+                          ? "border-atelier-text bg-atelier-card text-atelier-text font-bold"
+                          : "border-atelier-border bg-atelier-surface text-atelier-muted"
+                      }`}
+                    >
+                      {sh.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-atelier-muted mb-1.5">
+                  Icon Visual Motif Source
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: "monogram", label: "Initials Monogram" },
+                    { id: "symbol", label: "Vector Symbol" },
+                  ].map((src) => (
+                    <button
+                      key={src.id}
+                      type="button"
+                      onClick={() => updateNestedChoice("logo", { iconSource: src.id as any })}
+                      className={`py-1.5 px-2 rounded border text-center text-xs font-mono transition-all ${
+                        logo.iconSource === src.id
+                          ? "border-atelier-text bg-atelier-card text-atelier-text font-bold"
+                          : "border-atelier-border bg-atelier-surface text-atelier-muted"
+                      }`}
+                    >
+                      {src.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Step 6: Background
   if (step.slug === "background") {
     const bgTypes = ["solid", "gradient", "noise", "image", "video", "animated-3d", "pattern"] as const;
     return (

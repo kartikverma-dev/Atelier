@@ -18,6 +18,40 @@ interface ChangelogEntry {
 
 const RELEASES: ChangelogEntry[] = [
   {
+    version: "1.1.0",
+    releaseDate: "October 2026",
+    compilerId: "compiler 2026-10 (v1.1)",
+    highlights: [
+      "New 'Logo & brand mark' wizard step with concrete inline SVG and asset specifications",
+      "Official Atelier brand asset integration and reusable theme-aware <Logo /> component",
+      "5 new logo conflict detection rules (contrast, monogram length, missing paths, ornate sizing, loading screen)",
+      "Interactive live preview navbar logo rendering with letter case, tracking, and favicon mockups",
+      "Full backward compatibility for legacy v1 share links without logo fields",
+    ],
+    changes: [
+      {
+        category: "Added",
+        description: "New 'Brand mark, logo and icons' section in compiled output for both Website and App targets.",
+      },
+      {
+        category: "Added",
+        description: "Step 5 'Logo & brand mark' in wizard with wordmark, monogram, symbol, and existing file workflows.",
+      },
+      {
+        category: "Added",
+        description: "Conflict detection checks for logo contrast (3:1 minimum against navbar), monogram character limits, empty file paths, and ornate marks at 24px.",
+      },
+      {
+        category: "Added",
+        description: "Live preview favicon tab mockup rendering 16px and 32px icons side-by-side with live brand styling.",
+      },
+      {
+        category: "Refined",
+        description: "Zod choices schema bumped to v2 with transparent fallback for v1 share links and stored sessions.",
+      },
+    ],
+  },
+  {
     version: "1.0.0",
     releaseDate: "October 2026",
     compilerId: "compiler 2026-10",
